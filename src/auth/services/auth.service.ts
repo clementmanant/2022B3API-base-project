@@ -26,8 +26,6 @@ export class AuthService {
       role: (await this.usersService.findByMail(user.email)).role
     };
 
-    console.log(payload)
-
     return { 
       access_token: this.jwtService.sign(payload),
     }

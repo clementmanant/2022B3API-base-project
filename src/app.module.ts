@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { Project } from './projects/entities/project.entity';
+import { ProjectUsersModule } from './project-users/project-users.module';
 
 
 @Module({
@@ -29,6 +30,7 @@ import { Project } from './projects/entities/project.entity';
     UsersModule,
     AuthModule,
     ProjectsModule,
+    ProjectUsersModule,
   ],
   controllers: [],
   providers: [],
