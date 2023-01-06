@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { Project } from './projects/entities/project.entity';
 import { ProjectUsersModule } from './project-users/project-users.module';
+import { ProjectUser } from './project-users/entities/project-users.entity';
 
 
 @Module({
@@ -22,7 +23,7 @@ import { ProjectUsersModule } from './project-users/project-users.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [User, Project],
+        entities: [User, Project, ProjectUser],
         synchronize: true,
       }),
       inject: [ConfigService],
