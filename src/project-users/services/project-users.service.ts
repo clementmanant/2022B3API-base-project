@@ -28,4 +28,15 @@ export class ProjectUsersService {
     }
     return projectUser;
   }
+
+  async findOneWithUserIdAndProjectId(idUser: string, idProject: string) {
+    const projectUser = await this.projectUsersRepository.findOneBy({ 
+      userId: idUser, 
+      projectId: idProject 
+    })
+    if (!projectUser) {
+      throw new NotFoundException();
+    }
+    return projectUser;
+  }
 }

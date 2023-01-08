@@ -21,6 +21,10 @@ export class ProjectsService {
     return this.projectsRepository.find();
   }
 
+  findAllBy(): Promise<Project[]> {
+    return this.projectsRepository.find();
+  }
+
   async findOne(id: string) {
     const project = await this.projectsRepository.findOneBy({ id })
     if (!project) {

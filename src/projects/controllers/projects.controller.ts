@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, ParseUUIDPipe, NotFoundException, UseGuards, ValidationPipe, UsePipes, Request, UnauthorizedException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ParseUUIDPipe, NotFoundException, UseGuards, ValidationPipe, UsePipes, Request, UnauthorizedException, ForbiddenException } from '@nestjs/common';
 import { ProjectsService } from '../services/projects.service';
 import { CreateProjectDto } from '../dto/create-project.dto';
 import { Project } from '../entities/project.entity';
@@ -6,12 +6,14 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { JwtAuthGuard } from '../../auth/guards/jwt.auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { UsersService } from '../../users/services/users.service';
+import { ProjectUsersService } from '../../project-users/services/project-users.service';
 
 @Controller('projects')
 export class ProjectsController {
   constructor(
     private readonly projectsService: ProjectsService, 
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
+    private readonly projectUsersService: ProjectUsersService,
   ) {}
 
   @Post()
@@ -34,8 +36,7 @@ export class ProjectsController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles()
-  findAll(): Promise<Project[]> { //@Request() req): Promise<Project[]> {
-    // console.log(req.user.role);
+  findAll(): Promise<Project[]> {
     return this.projectsService.findAll();
   }
 

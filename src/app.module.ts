@@ -9,6 +9,8 @@ import { ProjectsModule } from './projects/projects.module';
 import { Project } from './projects/entities/project.entity';
 import { ProjectUsersModule } from './project-users/project-users.module';
 import { ProjectUser } from './project-users/entities/project-users.entity';
+import { EventsModule } from './events/events.module';
+import { Event } from './events/entities/event.entity';
 
 
 @Module({
@@ -23,7 +25,7 @@ import { ProjectUser } from './project-users/entities/project-users.entity';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [User, Project, ProjectUser],
+        entities: [User, Project, ProjectUser, Event],
         synchronize: true,
       }),
       inject: [ConfigService],
@@ -32,6 +34,7 @@ import { ProjectUser } from './project-users/entities/project-users.entity';
     AuthModule,
     ProjectsModule,
     ProjectUsersModule,
+    EventsModule,
   ],
   controllers: [],
   providers: [],
